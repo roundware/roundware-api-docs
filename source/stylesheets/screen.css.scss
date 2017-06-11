@@ -82,7 +82,8 @@ html, body {
   // This is the logo at the top of the ToC
   &>img {
     display: block;
-    max-width: 100%;
+    max-width: 90%;
+    padding: 10px;
   }
 
   &>.search {
@@ -470,20 +471,21 @@ html, body {
   aside {
     padding-top: 1em;
     padding-bottom: 1em;
-    text-shadow: 0 1px 0 lighten($aside-notice-bg, 15%);
+    // text-shadow: 0 0px 0 lighten($aside-notice-bg, 15%);
     margin-top: 1.5em;
     margin-bottom: 1.5em;
     background: $aside-notice-bg;
     line-height: 1.6;
+    font-weight: bold;
 
     &.warning {
       background-color: $aside-warning-bg;
-      text-shadow: 0 1px 0 lighten($aside-warning-bg, 15%);
+      // text-shadow: 0 0px 0 lighten($aside-warning-bg, 15%);
     }
 
     &.success {
       background-color: $aside-success-bg;
-      text-shadow: 0 1px 0 lighten($aside-success-bg, 15%);
+      // text-shadow: 0 0px 0 lighten($aside-success-bg, 15%);
     }
   }
 
@@ -566,7 +568,7 @@ html, body {
 // RESPONSIVE DESIGN
 ////////////////////////////////////////////////////////////////////////////////
 // These are the styles for phones and tablets
-// There are also a couple styles disperesed
+// There are also a couple styles dispersed
 
 @media (max-width: $tablet-width) {
   .tocify-wrapper {
