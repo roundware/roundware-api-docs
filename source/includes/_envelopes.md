@@ -67,7 +67,7 @@ Create new Envelope.
 `POST localhost:8888/api/2/envelopes/`
 
 ### Required Parameters
-Data format: application/json
+Data format: `application/json`
 
 Parameter | Format | Sample | Description/Notes
 --------- | ------ | ------ | -----------------
@@ -150,6 +150,16 @@ $.ajax(settings).done(function (response) {
 Update Envelope.
 
 This is the preferred method for adding a new Asset to the system as this adds an Asset to the Envelope and creates the new Asset simultaneously.
+
+`asset.submitted` is set automatically according to the following cascading set of checks:
+
+* is `submitted` parameter passed in request?
+    * if YES, `asset.submitted` set to this value
+    * if NO, then check if `latitude` and `longitude` parameters are both passed
+        * if NO, `asset.submitted False` and `latitude = project.latitude` and `longitude = project.longitude`
+        * if YES, then check if location in range of Project
+            * if NO, `asset.submitted = False`
+            * if YES, `asset.submitted = project.auto_submit`
 
 ### HTTP Request
 

@@ -130,6 +130,10 @@ select | enum | OPTIONS: single, multi, min_one
 active | boolean |
 index | integer | imposes ordering in client UI
 
+<aside class="success">
+Note — Adding GET param <code>admin=1</code> to this request will provide all localized strings in response, not only English.
+</aside>
+
 
 ## GET uigroups/:id/
 
@@ -288,7 +292,7 @@ Create new UI Group.
 `POST localhost:8888/api/2/uigroups/`
 
 ### Required Parameters
-Data format: application/json
+Data format: `application/json`
 
 Parameter | Format | Sample | Description/Notes
 --------- | ------ | ------ | -----------------

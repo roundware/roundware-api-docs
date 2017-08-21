@@ -225,7 +225,7 @@ Create new Event.
 `POST localhost:8888/api/2/events/`
 
 ### Required Parameters
-Data format: application/json
+Data format: `application/json`
 
 Parameter | Format | Sample | Description/Notes
 --------- | ------ | ------ | -----------------

@@ -1,5 +1,10 @@
 # users/
 
+### Definition
+Roundware uses Django Rest Framework token authorization. Roundware clients generate initial anonymous user accounts in order to retain the ease of use of not requiring an account sign-up process while benefitting from some of the security measures tokened accounts provide.
+
+Users will be able to claim their accounts or register on initial startup in the future.
+
 ## POST users/
 
 ```python
@@ -48,7 +53,7 @@ $.ajax(settings).done(function (response) {
 }
 ```
 
-Create new User.
+This request either creates a new anonymous Roundware User and associated token if the provided `device_id` does not already exist, or otherwise returns the username and token already associated with the provided `device_id`.
 
 ### HTTP Request
 
@@ -62,6 +67,6 @@ device_id* | 123456 | none | unique id generated on client and preferably consis
 client_type | iPhone | none |
 client_system | iOS 10.2 | none |
 
-<aside class="success">
+<aside class="notice">
 Remember — all other API requests require token authorization.
 </aside>

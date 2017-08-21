@@ -69,7 +69,7 @@ Create new Stream.
 `POST localhost:8888/api/2/streams/`
 
 ### Required Parameters
-Data format: `multipart/form-data'
+Data format: `multipart/form-data`
 
 Parameter | Format | Sample | Description/Notes
 --------- | ------ | ------ | -----------------
@@ -192,6 +192,8 @@ $.ajax(settings).done(function (response) {
 > Returns 200 OK if successful
 
 Update Stream with new tag filters.
+
+This request filters the playlist of Assets, but for `geo_listen_enabled` Sessions, only updates the in-range Assets if `latitude` and `longitude` are also included in the `PATCH` data. Therefore, it is best practice to include `latitude` and `longitude` in these requests for `geo_listen_enabled` projects.
 
 ### HTTP Request
 

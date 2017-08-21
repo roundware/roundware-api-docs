@@ -194,7 +194,7 @@ Create new Tag Category.
 `POST localhost:8888/api/2/tagcategories/`
 
 ### Required Parameters
-Data format: application/json
+Data format: `application/json`
 
 Parameter | Format | Sample | Description/Notes
 --------- | ------ | ------ | -----------------

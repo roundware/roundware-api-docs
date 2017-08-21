@@ -210,7 +210,7 @@ Create new Timed Asset.
 `POST localhost:8888/api/2/timedassets/`
 
 ### Required Parameters
-Data format: application/json
+Data format: `application/json`
 
 Parameter | Format | Sample | Description/Notes
 --------- | ------ | ------ | -----------------

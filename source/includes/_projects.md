@@ -302,6 +302,10 @@ audiolength__gte | float | in seconds greater than or equal
 created__lte | datetime |
 created__gte | datetime |
 
+<aside class="success">
+Note — Adding GET param <code>admin=1</code> to this request will provide all localized strings in response, not only English.
+</aside>
+
 
 ## GET projects/:id/tags/
 
@@ -405,6 +409,10 @@ Parameter | Format | Description/Notes
 --------- | ------ | -----------------
 description | string | contains, case-insensitive
 data | string | contains, case-insensitive
+
+<aside class="success">
+Note — Adding GET param <code>admin=1</code> to this request will provide all localized strings in response, not only English.
+</aside>
 
 
 ## GET projects/:id/uigroups/
@@ -533,6 +541,10 @@ select | string | OPTIONS: single, multi, min_one
 active | boolean |
 index | integer |
 
+<aside class="success">
+Note — Adding GET param <code>admin=1</code> to this request will provide all localized strings in response, not only English.
+</aside>
+
 
 ## POST projects/
 
@@ -657,7 +669,7 @@ Create new Project.
 `POST localhost:8888/api/2/projects/`
 
 ### Required Parameters
-Data format: application/json
+Data format: `application/json`
 
 Parameter | Format | Sample | Description/Notes
 --------- | ------ | ------ | -----------------

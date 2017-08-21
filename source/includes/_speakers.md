@@ -330,7 +330,7 @@ Create new Speaker.
 `POST localhost:8888/api/2/speakers/`
 
 ### Required Parameters
-Data format: application/json
+Data format: `application/json`
 
 Parameter | Format | Sample | Description/Notes
 --------- | ------ | ------ | -----------------

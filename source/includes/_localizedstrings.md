@@ -190,7 +190,7 @@ Create new Localized String.
 `POST localhost:8888/api/2/localizedstrings/`
 
 ### Required Parameters
-Data format: application/json
+`Data format: `application/json`
 
 Parameter | Format | Sample | Description/Notes
 --------- | ------ | ------ | -----------------

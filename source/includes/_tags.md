@@ -107,6 +107,10 @@ project_id | integer |
 description | string | contains and case-insensitive
 data | string | contains and case-insensitive
 
+<aside class="success">
+Note — Adding GET param <code>admin=1</code> to this request will provide all localized strings in response, not only English.
+</aside>
+
 
 ## GET tags/:id/
 
@@ -255,7 +259,7 @@ Create new Tag.
 `POST localhost:8888/api/2/tags/`
 
 ### Required Parameters
-Data format: application/json
+Data format: `application/json`
 
 Parameter | Format | Sample | Description/Notes
 --------- | ------ | ------ | -----------------

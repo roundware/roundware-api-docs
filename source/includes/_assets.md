@@ -114,7 +114,9 @@ audiolength__gte | double | in seconds
 created__lte | datetime |
 created__gte | datetime |
 
-
+<aside class="success">
+Note — Adding GET param <code>admin=1</code> to this request will provide all localized strings in response, not only English.
+</aside>
 
 
 ## GET assets/:id/
@@ -425,7 +427,7 @@ Register Vote on specific Asset.
 `POST localhost:8888/api/2/assets/:id/votes/`
 
 ### Required Parameters
-Data format: application/json
+Data format: `application/json`
 
 Parameter | Format | Sample | Description/Notes
 --------- | ------ | ------ | -----------------
@@ -437,3 +439,113 @@ vote_type | string | like | OPTIONS: like, flag, rate, block_asset, block_user
 Parameter | Format | Sample | Description/Notes
 --------- | ------ | ------ | -----------------
 value | integer | 4 | mainly applies to `vote_type = rate` currently
+
+
+## GET assets/random/
+
+```python
+import requests
+
+url = "http://localhost:8888/api/2/assets/random/"
+
+querystring = {"limit":"2", "project_id":"1", "submitted":"true", "media_type":"audio", "audiolength__lte":"30", "audiolength__gte":"10"}
+
+headers = {'authorization': 'token 4ee0fc210823c2c2f72f06e3fe862c0f6740d3b4'}
+
+response = requests.request("GET", url, headers=headers, params=querystring)
+
+print(response.text)
+```
+
+```shell
+curl --request GET \
+  --url 'http://localhost:8888/api/2/assets/?limit=2&mediatype=audio&submitted=true&project_id=1&audiolength__lte=30&audiolength__gte=15' \
+  --header 'authorization: token 4ee0fc210823c2c2f72f06e3fe862c0f6740d3b4'
+```
+
+```javascript
+var settings = {
+  "async": true,
+  "crossDomain": true,
+  "url": "http://localhost:8888/api/2/assets/?limit=2&mediatype=audio&submitted=true&project_id=1&audiolength__lte=30&audiolength__gte=15",
+  "method": "GET",
+  "headers": {
+    "authorization": "token 4ee0fc210823c2c2f72f06e3fe862c0f6740d3b4"
+  }
+}
+
+$.ajax(settings).done(function (response) {
+  console.log(response);
+});
+```
+
+> Sample JSON response:
+
+```json
+[
+    {
+        "id": 7786,
+        "description": "waldman-66",
+        "latitude": 42.3746271119689,
+        "longitude": -71.1146264076236,
+        "filename": "20150502-163007.wav",
+        "file": "/rwmedia/20150502-163007.wav",
+        "volume": 1,
+        "submitted": true,
+        "created": "2015-05-02T16:30:08",
+        "weight": 50,
+        "loc_caption": null,
+        "project": 19,
+        "language": "en",
+        "loc_description": [],
+        "loc_alt_text": [],
+        "media_type": "audio",
+        "audio_length_in_seconds": 15.16,
+        "tag_ids": [
+            222,
+            226
+        ],
+        "session_id": -10
+    },
+    {
+        "id": 8107,
+        "description": "",
+        "latitude": 42.37447,
+        "longitude": -71.116654,
+        "filename": "20151026-225822.wav",
+        "file": "/rwmedia/20151026-225822.m4a",
+        "volume": 1,
+        "submitted": true,
+        "created": "2015-10-26T22:58:22",
+        "weight": 50,
+        "loc_caption": null,
+        "project": 19,
+        "language": "en",
+        "loc_description": [],
+        "loc_alt_text": [],
+        "media_type": "audio",
+        "audio_length_in_seconds": 19.48,
+        "tag_ids": [
+            219
+        ],
+        "session_id": 23111
+    }
+]
+```
+
+Get random list of Assets.
+
+### HTTP Request
+
+`GET localhost:8888/api/2/assets/random/`
+
+### Optional Filters
+
+Parameter | Format | Description/Notes
+--------- | ------ | -----------------
+limit | integer | how many Assets included in response?
+project_id | integer |
+media_type | string | audio, photo, text, video
+submitted | boolean |
+audiolength__lte | double | in seconds
+audiolength__gte | double | in seconds

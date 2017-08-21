@@ -11,6 +11,7 @@ toc_footers:
   - <a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a>
 
 includes:
+  - scenarios
   - users
   - assets
   - audiotracks
@@ -30,23 +31,45 @@ includes:
   - uigroups
   - uiitems
   - votes
+  - testing
   - errors
 
 search: true
 ---
 
-# Introduction
+# Roundware API V2
 
-Welcome to the Roundware API V2! You can use our API to access Roundware API endpoints, which act as the gateway to the [Roundware](https://roundware.org) audio augmented reality platform.
+Welcome to the Roundware API V2. You can use our API to access Roundware API endpoints, which act as the gateway to the [Roundware](https://roundware.org) audio augmented reality platform.
 
-We have language bindings in Shell, Javascript and Python! You can view code examples for the Vagrant environment in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+We have language bindings in Shell, Javascript and Python. You can view code examples for the Vagrant environment in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+
+The source for these docs is kept in a public Git repository: [roundware-api-docs](https://github.com/roundware/roundware-api-docs). Please feel free to issue a PR if you find anything contained herein that is wrong or needs more clarification. Thanks!
 
 
 ### Initial testing setup
 
-1. Run `POST api/2/users/` to get token
-2. Use token for all subsequent api calls
-3. Run `POST api/2/sessions/`
+1. Run `POST api/2/users/` to get token.
+2. Use token for all subsequent api calls.
+3. Run request sequences in Common Scenarios as desired.
+
+### API Design Guidelines
+
+In an attempt to be consistent across API calls, here are some guidelines for `api/2/` calls. These provide the basis for many design decisions and should help anyone implementing the API. This said, exceptions must be made in some cases, so expect occasional inconsistencies, most of which are likely by design, but some of which may not be(!).
+
+* All resources are plural.
+* Methods
+  * `GET` - View the resource
+  * `POST` - Create the resource
+  * `PUT` - Replace the resource (not currently used)
+  * `PATCH` - Update the resource
+  * `DELETE` - Delete the resource
+* For `POST` and `PATCH` calls, the object being created should be at the root of the url i.e. `POST api/2/sessions/` and any further parameters should be added as `POST` params, preferably in `application/json` form, but can be `multipart/form-data` as needed.
+* Any ids included in urls should refer to the item immediately preceding them in the url itself. The following returns data about Project with id=2:
+
+`GET api/2/projects/2/`
+
+* Generally speaking, a call that changes or creates an object should represent the entire new object in its response. This will allow for a easy verification of application state for the API consuming client.
+* all calls should have example calls and example responses showing all possible params (optional and otherwise) to make it easier for those adopting the protocol.
 
 <aside class="warning">
 This is a beta version of the API docs. The vast majority of the information contained herein should be accurate and usable, but more verification is being done to ensure all code samples etc are valid. Thank you for your patience!

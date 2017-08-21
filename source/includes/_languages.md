@@ -195,7 +195,7 @@ Create new Language.
 `POST localhost:8888/api/2/languages/`
 
 ### Required Parameters
-Data format: application/json
+Data format: `application/json`
 
 Parameter | Format | Sample | Description/Notes
 --------- | ------ | ------ | -----------------
