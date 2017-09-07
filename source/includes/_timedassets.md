@@ -80,6 +80,7 @@ Get list of Timed Assets.
 Parameter | Format | Description/Notes
 --------- | ------ | -----------------
 project_id | integer |
+asset_id | integer |
 start__gte | integer | in seconds, greater than or equal
 start__lte | integer | in seconds, less than or equal
 end__gte | integer | in seconds, greater than or equal
@@ -134,7 +135,7 @@ $.ajax(settings).done(function (response) {
 }
 ```
 
-Get specific Timed Assets.
+Get specific Timed Asset.
 
 ### HTTP Request
 

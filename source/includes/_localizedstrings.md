@@ -10,7 +10,7 @@ import requests
 
 url = "http://localhost:8888/api/2/localizedstrings/"
 
-querystring = {"localized_string":"roundware","language":"en"}
+querystring = {"localized_string":"roundware","language_id":1}
 
 headers = {'authorization': 'token 4ee0fc210823c2c2f72f06e3fe862c0f6740d3b4'}
 
@@ -21,7 +21,7 @@ print(response.text)
 
 ```shell
 curl --request GET \
-  --url 'http://localhost:8888/api/2/localizedstrings/?localized_string=roundware&language=en' \
+  --url 'http://localhost:8888/api/2/localizedstrings/?localized_string=roundware&language_id=1' \
   --header 'authorization: token 4ee0fc210823c2c2f72f06e3fe862c0f6740d3b4'
 ```
 
@@ -29,7 +29,7 @@ curl --request GET \
 var settings = {
   "async": true,
   "crossDomain": true,
-  "url": "http://localhost:8888/api/2/localizedstrings/?localized_string=roundware&language=en",
+  "url": "http://localhost:8888/api/2/localizedstrings/?localized_string=roundware&language_id=1",
   "method": "GET",
   "headers": {
     "authorization": "token 4ee0fc210823c2c2f72f06e3fe862c0f6740d3b4"
@@ -48,12 +48,14 @@ $.ajax(settings).done(function (response) {
   {
     "id": 2,
     "language": "en",
+    "language_id": 1,
     "text": "Why are you using Roundware?"
   },
   {
     "id": 47,
     "language": "en",
-    "text": "You are out of range of this Roundware project.  Please go somewhere within range and try again.  Thank you."
+    "language_id": 1,
+    "text": "You are out of range of this Roundware project. Please go somewhere within range and try again. Thank you."
   }
 ]
 ```
@@ -69,6 +71,7 @@ Get list of Localized Strings.
 Parameter | Format | Description/Notes
 --------- | ------ | -----------------
 language | string | contains, case-insensitive
+language_id | integer |
 localized_string | string | contains, case-insensitive
 
 
@@ -114,6 +117,7 @@ $.ajax(settings).done(function (response) {
 {
   "id": 2,
   "language": "en",
+  "language_id": 1,
   "text": "Why are you using Roundware?"
 }
 ```
@@ -132,7 +136,7 @@ import requests
 
 url = "http://localhost:8888/api/2/localizedstrings/"
 
-payload = '{"localized_string":"This is a new localized string.", "language":"en"}'
+payload = '{"text":"This is a new localized string.", "language_id":1}'
 headers = {
     'authorization': "token 4ee0fc210823c2c2f72f06e3fe862c0f6740d3b4",
     'content-type': "application/json"
@@ -149,8 +153,8 @@ curl --request POST \
   --header 'authorization: token 4ee0fc210823c2c2f72f06e3fe862c0f6740d3b4' \
   --header 'content-type: application/json' \
   --data '{
-  "localized_string": "This is a new localized string.",
-  "language": "en",
+  "text": "This is a new localized string.",
+  "language_id": 1,
 }'
 ```
 
@@ -165,7 +169,7 @@ var settings = {
     "content-type": "application/json"
   },
   "processData": false,
-  "data": '{"localized_string":"This is a new localized string.", "language":"en"}'
+  "data": '{"text":"This is a new localized string.", "language_id":1}'
 }
 
 $.ajax(settings).done(function (response) {
@@ -179,6 +183,7 @@ $.ajax(settings).done(function (response) {
 {
   "id": 3,
   "language": "en",
+  "language_id": 1,
   "text": "This is a new localized string."
 }
 ```
@@ -194,8 +199,8 @@ Create new Localized String.
 
 Parameter | Format | Sample | Description/Notes
 --------- | ------ | ------ | -----------------
-localized_string | string | Hello |
-language | string | en | Validates to existing
+text | string | Hello |
+language_id | integer | 1 | Validates to existing
 
 
 ## PATCH languages/:id/
@@ -205,7 +210,7 @@ import requests
 
 url = "http://localhost:8888/api/2/localizedstrings/3/"
 
-payload = '{"localized_string":"This is an updated localized string."}'
+payload = '{"text":"This is an updated localized string."}'
 headers = {
     'authorization': "token 4ee0fc210823c2c2f72f06e3fe862c0f6740d3b4",
     'content-type': "application/json"
@@ -221,7 +226,7 @@ curl --request PATCH \
   --url http://localhost:8888/api/2/localizedstrings/3/ \
   --header 'authorization: token 4ee0fc210823c2c2f72f06e3fe862c0f6740d3b4' \
   --header 'content-type: application/json' \
-  --data '{"localized_string":"This is an updated localized string."}'
+  --data '{"text":"This is an updated localized string."}'
 ```
 
 ```javascript
@@ -235,7 +240,7 @@ var settings = {
     "content-type": "application/json"
   },
   "processData": false,
-  "data": '{"localized_string":"This is an updated localized string."}'
+  "data": '{"text":"This is an updated localized string."}'
 }
 
 $.ajax(settings).done(function (response) {
@@ -249,6 +254,7 @@ $.ajax(settings).done(function (response) {
 {
   "id": 3,
   "language": "en",
+  "language_id": 1,
   "text": "This is an updated localized string."
 }
 ```

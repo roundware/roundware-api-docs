@@ -144,6 +144,17 @@ Parameter | Format | Sample | Description/Notes
 latitude | double | 1.2345 |
 longitude | double | 2.3456 |
 
+### Optional Parameters
+Data format: `multipart/form-data`
+
+Parameter | Format | Sample | Description/Notes
+--------- | ------ | ------ | -----------------
+listener_range_max | integer | 10000 | maximum distance threshold in meters
+listener_range_min | integer | 1000 | minimum distance threshold in meters
+
+If the `listener_range_max` parameter is included in request, the stream switches to "range listening" mode in which assets are added to the playlist based on being located within a distance threshold determined by the user. This allows users to choose to listen to content that is much further from them physically than would normally be accessible in `geo_listen_enabled` mode. The `listener_range_max` parameter must be included in every request for which client wishes to remain in range listening mode; if not included, stream will default back to standard listening mode for the project (geo or global listening).
+
+By default, `listener_range_min` is set to 0. If client includes `listener_range_min` in request in addition to `listener_range_max`, the playlist will be filtered for assets that are more than `listener_range_min` and less than `listener_range_max` from the listener.
 
 ## PATCH streams/:id/ [tags]
 

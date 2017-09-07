@@ -55,8 +55,8 @@ $.ajax(settings).done(function (response) {
 {
   "session_id": 3,
   "created": "2017-06-07T13:07:58.247988",
-  "assets": [],
-  "envelope_id": 5
+  "asset_ids": [],
+  "id": 5
 }
 ```
 
@@ -128,6 +128,7 @@ $.ajax(settings).done(function (response) {
   "description": "",
   "latitude": 1,
   "longitude": 1,
+  "shape": null,
   "filename": "20170607-144505-1319.wav",
   "file": "/rwmedia/20170607-144505-1319.wav",
   "volume": 1,
@@ -143,7 +144,8 @@ $.ajax(settings).done(function (response) {
   "media_type": "audio",
   "audio_length_in_seconds": 11.76,
   "tag_ids": [3,5,4],
-  "session_id": 1319
+  "session_id": 1319,
+  "envelope_ids": [1]
 }
 ```
 
@@ -177,3 +179,4 @@ file | binary |  | new Asset created with file
 latitude | double | 1.2345 | assigned to newly created Asset
 longitude | double | 2.3456 | assigned to newly created Asset
 tag_ids | comma-separated list of integers | 3,4,5 | assigned to newly created Asset
+media_type | enum | audio,photo,text,video | default is audio
