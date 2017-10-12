@@ -110,7 +110,7 @@ project_id | integer |
 tag_ids | comma separated list |
 media_type | string | audio, photo, text, video
 language | string | 2-character language shortcode
-envelope_id | integer |
+envelope_ids | list of integers | can be single id in list
 longitude | double |
 latitude | double |
 submitted | boolean | determines whether or not asset will be available to streams etc

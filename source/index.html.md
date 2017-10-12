@@ -20,6 +20,7 @@ includes:
   - languages
   - listenevents
   - localizedstrings
+  - login
   - projects
   - sessions
   - speakers

@@ -415,6 +415,286 @@ Note — Adding GET param <code>admin=1</code> to this request will provide all 
 </aside>
 
 
+## GET projects/:id/uiconfig/
+
+```python
+import requests
+
+url = "http:///localhost:8888/api/2/projects/1/uiconfig/"
+
+querystring = {"session_id": 1}
+
+headers = {'authorization': 'token 4ee0fc210823c2c2f72f06e3fe862c0f6740d3b4'}
+
+response = requests.request("GET", url, headers=headers, params=querystring)
+
+print(response.text)
+```
+
+```shell
+curl --request GET \
+  --url http://localhost:8888/api/2/projects/1/uiconfig/?session_id=1 \
+  --header 'authorization: token 4ee0fc210823c2c2f72f06e3fe862c0f6740d3b4'
+```
+
+```javascript
+var settings = {
+  "async": true,
+  "crossDomain": true,
+  "url": "http://localhost:8888/api/2/projects/1/uiconfig/?session_id=1",
+  "method": "GET",
+  "headers": {
+    "authorization": "token 4ee0fc210823c2c2f72f06e3fe862c0f6740d3b4"
+  }
+}
+
+$.ajax(settings).done(function (response) {
+  console.log(response);
+});
+```
+
+> Sample JSON response:
+
+```json
+{
+    "speak": [
+        {
+            "select": "single",
+            "group_short_name": "Gender",
+            "header_display_text": "What gender are you?",
+            "display_items": [
+                {
+                    "id": 8,
+                    "tag_id": 3,
+                    "parent_id": null,
+                    "default_state": false,
+                    "tag_display_text": "male"
+                },
+                {
+                    "id": 171,
+                    "tag_id": 4,
+                    "parent_id": null,
+                    "default_state": false,
+                    "tag_display_text": "female"
+                }
+            ]
+        },
+        {
+            "select": "single",
+            "group_short_name": "Usertype",
+            "header_display_text": "Who are you?",
+            "display_items": [
+                {
+                    "id": 173,
+                    "tag_id": 23,
+                    "parent_id": 171,
+                    "default_state": false,
+                    "tag_display_text": "Curator"
+                },
+                {
+                    "id": 143,
+                    "tag_id": 9,
+                    "parent_id": 8,
+                    "default_state": false,
+                    "tag_display_text": "Visitor"
+                },
+                {
+                    "id": 172,
+                    "tag_id": 9,
+                    "parent_id": 171,
+                    "default_state": false,
+                    "tag_display_text": "Visitor"
+                },
+                {
+                    "id": 142,
+                    "tag_id": 8,
+                    "parent_id": 8,
+                    "default_state": false,
+                    "tag_display_text": "Artist"
+                },
+                {
+                    "id": 180,
+                    "tag_id": 8,
+                    "parent_id": 171,
+                    "default_state": false,
+                    "tag_display_text": "Artist"
+                }
+            ]
+        },
+        {
+            "select": "single",
+            "group_short_name": "Question",
+            "header_display_text": "What do you want to talk about?",
+            "display_items": [
+                {
+                    "id": 178,
+                    "tag_id": 26,
+                    "parent_id": 172,
+                    "default_state": false,
+                    "tag_display_text": "Who are you?"
+                },
+                {
+                    "id": 174,
+                    "tag_id": 26,
+                    "parent_id": 173,
+                    "default_state": false,
+                    "tag_display_text": "Who are you?"
+                },
+                {
+                    "id": 148,
+                    "tag_id": 5,
+                    "parent_id": 143,
+                    "default_state": false,
+                    "tag_display_text": "Why are you using Roundware?"
+                },
+                {
+                    "id": 175,
+                    "tag_id": 22,
+                    "parent_id": 173,
+                    "default_state": false,
+                    "tag_display_text": "Respond to something you've heard."
+                },
+                {
+                    "id": 177,
+                    "tag_id": 22,
+                    "parent_id": 172,
+                    "default_state": false,
+                    "tag_display_text": "Respond to something you've heard."
+                },
+                {
+                    "id": 152,
+                    "tag_id": 22,
+                    "parent_id": 142,
+                    "default_state": false,
+                    "tag_display_text": "Respond to something you've heard."
+                },
+                {
+                    "id": 149,
+                    "tag_id": 22,
+                    "parent_id": 143,
+                    "default_state": false,
+                    "tag_display_text": "Respond to something you've heard."
+                },
+                {
+                    "id": 155,
+                    "tag_id": 26,
+                    "parent_id": 142,
+                    "default_state": false,
+                    "tag_display_text": "Who are you?"
+                },
+                {
+                    "id": 176,
+                    "tag_id": 5,
+                    "parent_id": 173,
+                    "default_state": false,
+                    "tag_display_text": "Why are you using Roundware?"
+                },
+                {
+                    "id": 179,
+                    "tag_id": 5,
+                    "parent_id": 172,
+                    "default_state": false,
+                    "tag_display_text": "Why are you using Roundware?"
+                }
+            ]
+        }
+    ],
+    "listen": [
+        {
+            "select": "min_one",
+            "group_short_name": "Gender",
+            "header_display_text": "What genders do you want to listen to?",
+            "display_items": [
+                {
+                    "id": 79,
+                    "tag_id": 3,
+                    "parent_id": null,
+                    "default_state": true,
+                    "tag_display_text": "male"
+                },
+                {
+                    "id": 164,
+                    "tag_id": 4,
+                    "parent_id": null,
+                    "default_state": false,
+                    "tag_display_text": "female"
+                }
+            ]
+        },
+        {
+            "select": "min_one",
+            "group_short_name": "Usertype",
+            "header_display_text": "Who do you want to hear?",
+            "display_items": [
+                {
+                    "id": 165,
+                    "tag_id": 23,
+                    "parent_id": null,
+                    "default_state": false,
+                    "tag_display_text": "Curator"
+                },
+                {
+                    "id": 166,
+                    "tag_id": 9,
+                    "parent_id": null,
+                    "default_state": false,
+                    "tag_display_text": "Visitor"
+                },
+                {
+                    "id": 167,
+                    "tag_id": 8,
+                    "parent_id": null,
+                    "default_state": false,
+                    "tag_display_text": "Artist"
+                }
+            ]
+        },
+        {
+            "select": "min_one",
+            "group_short_name": "Question",
+            "header_display_text": "What do you want to listen to?",
+            "display_items": [
+                {
+                    "id": 168,
+                    "tag_id": 26,
+                    "parent_id": null,
+                    "default_state": false,
+                    "tag_display_text": "Who are you?"
+                },
+                {
+                    "id": 169,
+                    "tag_id": 5,
+                    "parent_id": null,
+                    "default_state": false,
+                    "tag_display_text": "Why are you using Roundware?"
+                },
+                {
+                    "id": 170,
+                    "tag_id": 22,
+                    "parent_id": null,
+                    "default_state": false,
+                    "tag_display_text": "Respond to something you've heard."
+                }
+            ]
+        }
+    ]
+}
+```
+
+This is a convenience request to facilitate client UI construction. Rather than having to make `projects/:id/uiconfig/`, `projects/:id/tags/` and `projects/:id/tagcategories/` requests and then weaving them together, this request returns all and the only data a client needs to setup both listen and speak tag filtering screens. Ordering is enforced in response.
+
+Default behavior is for Listen `display_items` to show one per `tag_id` since default Listen tag filtering will not filter `display_items` by user selections since there is no imposed order of user interaction as in Speak. For Speak, multiple `display_items` with the same `tag_id` can be included as they will have different `parent_ids`, allowing the client to filter the available `display_items` in each group based on previous user selections. For more complicated or non-standard client implementations, the lower level model api request can be used.
+
+### HTTP Request
+
+`GET localhost:8888/api/2/projects/1/uiconfig/`
+
+### Parameters
+
+Parameter | Format | Description/Notes
+--------- | ------ | -----------------
+session_id | integer | used to localize response strings
+
 ## GET projects/:id/uigroups/
 
 ```python

@@ -240,6 +240,7 @@ client_system | string | iOS 10.2 |
 
 Parameter | Format | Sample | Description/Notes
 --------- | ------ | ------ | -----------------
+client_type | string | | defaults to value in related session if not passed
 demo_stream_enabled | boolean | false | defaults to false
 geo_listen_enabled | boolean | true | defaults to `project.geo_listen_enabled`
 language | 2-character code | es | defaults to en

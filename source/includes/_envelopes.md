@@ -3,6 +3,131 @@
 ### Definition:
 A collection of assets submitted by a user/participant. Envelopes can contain multiple assets (several audio recordings, audio and photo, etc) collected at the same time by the same user. This is useful when there is a desire to bundle assets related to the same moment together, such as an audio recording with a photo of what was discussed in the recording.
 
+## GET envelopes/
+
+```python
+import requests
+
+url = "http://localhost:8888/api/2/envelopes/"
+
+querystring = {"project_id":"1"}
+
+headers = {'authorization': 'token aed40ccd8bbc291bf04ccea20627cd8f83eee9ca'}
+
+response = requests.request("GET", url, headers=headers, params=querystring)
+
+print(response.text)
+```
+
+```shell
+curl --request GET \
+  --url 'http://localhost:8888/api/2/envelopes/?project_id=1' \
+  --header 'authorization: token aed40ccd8bbc291bf04ccea20627cd8f83eee9ca'
+```
+
+```javascript
+var settings = {
+  "async": true,
+  "crossDomain": true,
+  "url": "http://localhost:8888/api/2/envelopes/?project_id=1",
+  "method": "GET",
+  "headers": {
+    "authorization": "token aed40ccd8bbc291bf04ccea20627cd8f83eee9ca"
+  }
+}
+
+$.ajax(settings).done(function (response) {
+  console.log(response);
+});
+```
+
+> Sample JSON response:
+
+```json
+[
+    {
+        "id": 2,
+        "session_id": 3,
+        "created": "2017-09-30T22:57:09.446813",
+        "asset_ids": [1]
+    },
+    {
+        "id": 1,
+        "session_id": 1,
+        "created": "2013-01-21T10:36:44",
+        "asset_ids": [2, 3, 4, 5]
+    }
+]
+```
+
+Get list of Envelopes.
+
+### HTTP Request
+
+`GET localhost:8888/api/2/envelopes/`
+
+### Optional Filters
+
+Parameter | Format | Description/Notes
+--------- | ------ | -----------------
+project_id | integer |
+session_id | integer |
+asset_id | integer |
+
+## GET envelopes/:id/
+
+```python
+import requests
+
+url = "http://localhost:8888/api/2/envelopes/1/"
+
+headers = {'authorization': 'token aed40ccd8bbc291bf04ccea20627cd8f83eee9ca'}
+
+response = requests.request("GET", url, headers=headers)
+
+print(response.text)
+```
+
+```shell
+curl --request GET \
+  --url 'http://localhost:8888/api/2/envelopes/1/' \
+  --header 'authorization: token aed40ccd8bbc291bf04ccea20627cd8f83eee9ca'
+```
+
+```javascript
+var settings = {
+  "async": true,
+  "crossDomain": true,
+  "url": "http://localhost:8888/api/2/envelopes/1/",
+  "method": "GET",
+  "headers": {
+    "authorization": "token aed40ccd8bbc291bf04ccea20627cd8f83eee9ca"
+  }
+}
+
+$.ajax(settings).done(function (response) {
+  console.log(response);
+});
+```
+
+> Sample JSON response:
+
+```json
+{
+    "id": 1,
+    "session_id": 1,
+    "created": "2013-01-21T10:36:44",
+    "asset_ids": [2, 3, 4, 5]
+}
+```
+
+Get specific Envelope.
+
+### HTTP Request
+
+`GET localhost:8888/api/2/envelopes/1/`
+
+
 ## POST envelopes/
 
 ```python
