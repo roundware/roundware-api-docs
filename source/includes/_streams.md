@@ -150,11 +150,21 @@ Data format: `multipart/form-data`
 Parameter | Format | Sample | Description/Notes
 --------- | ------ | ------ | -----------------
 listener_range_max | integer | 10000 | maximum distance threshold in meters
-listener_range_min | integer | 1000 | minimum distance threshold in meters
+listener_range_min | integer | 1000 | minimum distance threshold in meters, default = 0
+listen_heading | float | 55.0 | compass heading of directional listening (degrees)
+listen_width | float | 10.0 | width of listening "beam" (degrees), default=10
+
+### Range Listening Mode
 
 If the `listener_range_max` parameter is included in request, the stream switches to "range listening" mode in which assets are added to the playlist based on being located within a distance threshold determined by the user. This allows users to choose to listen to content that is much further from them physically than would normally be accessible in `geo_listen_enabled` mode. The `listener_range_max` parameter must be included in every request for which client wishes to remain in range listening mode; if not included, stream will default back to standard listening mode for the project (geo or global listening).
 
 By default, `listener_range_min` is set to 0. If client includes `listener_range_min` in request in addition to `listener_range_max`, the playlist will be filtered for assets that are more than `listener_range_min` and less than `listener_range_max` from the listener.
+
+### Directional Listening Mode
+
+If `listen_heading` is included in a request with a valid value, the stream switches to "directional listening" mode in which assets are added to the playlist based on being located in the specified direction (compass heading) from the listener. `listen_width` specifies how many degrees (centered around `listen_heading`) the "listening beam" should extend. The lower the value, the thinner and more focussed the beam becomes.
+
+`listener_range_min/max` parameters can be used in combination with directional listening to provide a direction as well as a distance range to filter for available assets. With no range parameters included in request, all assets from the listener's location to the antipodal location on the other side of the earth will be heard. The `listener_range_max` parameter must be included in every request for which client wishes to remain in range listening mode; if not included, stream will default back to standard listening mode for the project (geo or global listening).
 
 ## PATCH streams/:id/ [tags]
 
@@ -375,12 +385,12 @@ Fade out currently playing Asset and play it again per Audiotrack settings.
 `GET localhost:8888/api/2/streams/:id/replayasset/`
 
 
-## POST streams/:id/skip/
+## POST streams/:id/skipasset/
 
 ```python
 import requests
 
-url = "http://localhost:8888/api/2/streams/1/skip/"
+url = "http://localhost:8888/api/2/streams/1/skipasset/"
 
 payload = ""
 headers = {
@@ -394,7 +404,7 @@ print(response.text)
 
 ```shell
 curl --request POST \
-  --url http:///localhost:8888/api/2/streams/1/skip/ \
+  --url http:///localhost:8888/api/2/streams/1/skipasset/ \
   --header 'authorization: token 4ee0fc210823c2c2f72f06e3fe862c0f6740d3b4' \
   --header 'content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW'
 ```
@@ -403,7 +413,7 @@ curl --request POST \
 var settings = {
   "async": true,
   "crossDomain": true,
-  "url": "http://localhost:8888/api/2/streams/1/skip/",
+  "url": "http://localhost:8888/api/2/streams/1/skipasset/",
   "method": "POST",
   "headers": {
     "authorization": "token 4ee0fc210823c2c2f72f06e3fe862c0f6740d3b4"
@@ -421,7 +431,7 @@ Fade out currently playing Asset and play next Asset in playlist.
 
 ### HTTP Request
 
-`GET localhost:8888/api/2/streams/:id/skip/`
+`GET localhost:8888/api/2/streams/:id/skipasset/`
 
 
 ## POST streams/:id/pause/
