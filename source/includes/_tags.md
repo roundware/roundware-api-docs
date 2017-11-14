@@ -44,8 +44,7 @@ $.ajax(settings).done(function (response) {
 > Sample JSON response:
 
 ```json
-{
-  "tags": [
+[
     {
       "id": 3,
       "value": "male",
@@ -89,8 +88,7 @@ $.ajax(settings).done(function (response) {
         }
       ]
     }
-  ]
-}
+]
 ```
 
 Get list of Tags.

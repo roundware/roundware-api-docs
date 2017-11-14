@@ -348,8 +348,7 @@ $.ajax(settings).done(function (response) {
 > Sample JSON response:
 
 ```json
-{
-  "tags": [
+[
     {
       "id": 3,
       "value": "male",
@@ -393,8 +392,7 @@ $.ajax(settings).done(function (response) {
         }
       ]
     }
-  ]
-}
+]
 ```
 
 Get Tags associated with specific Project.
@@ -736,8 +734,7 @@ $.ajax(settings).done(function (response) {
 > Sample JSON response:
 
 ```json
-{
-  "ui_groups": [
+[
     {
       "id": 1,
       "name": "What genders do you want to listen to?",
@@ -800,8 +797,7 @@ $.ajax(settings).done(function (response) {
         }
       ]
     }
-  ]
-}
+]
 ```
 
 Get UIGroups associated with specific Project.

@@ -44,8 +44,7 @@ $.ajax(settings).done(function (response) {
 > Sample JSON response:
 
 ```json
-{
-  "ui_groups": [
+[
     {
       "id": 1,
       "name": "What genders do you want to listen to?",
@@ -108,8 +107,8 @@ $.ajax(settings).done(function (response) {
         }
       ]
     }
-  ]
-}
+]
+
 ```
 
 Get list of UI Groups.

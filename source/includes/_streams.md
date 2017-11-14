@@ -544,7 +544,7 @@ headers = {
     'authorization': "token 4ee0fc210823c2c2f72f06e3fe862c0f6740d3b4"
     }
 
-response = requests.request("POST", url, data=payload, headers=headers)
+response = requests.request("GET", url, data=payload, headers=headers)
 
 print(response.text)
 ```
