@@ -585,3 +585,59 @@ Determine if a specific Stream is currently alive and streaming.
 ### HTTP Request
 
 `GET localhost:8888/api/2/streams/:id/isactive/`
+
+
+## POST streams/:id/kill/
+
+```python
+import requests
+
+url = "http://localhost:8888/api/2/streams/1/kill/"
+
+payload = ""
+headers = {
+    'authorization': "token 4ee0fc210823c2c2f72f06e3fe862c0f6740d3b4"
+    }
+
+response = requests.request("POST", url, data=payload, headers=headers)
+
+print(response.text)
+```
+
+```shell
+curl --request POST \
+  --url http:///localhost:8888/api/2/streams/1/kill/ \
+  --header 'authorization: token 4ee0fc210823c2c2f72f06e3fe862c0f6740d3b4' \
+  --header 'content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW'
+```
+
+```javascript
+var settings = {
+  "async": true,
+  "crossDomain": true,
+  "url": "http://localhost:8888/api/2/streams/1/kill/",
+  "method": "POST",
+  "headers": {
+    "authorization": "token 4ee0fc210823c2c2f72f06e3fe862c0f6740d3b4"
+  }
+}
+
+$.ajax(settings).done(function (response) {
+  console.log(response);
+});
+```
+
+> Sample JSON response:
+
+```json
+{
+    "stream_id": 1,
+    "success": true
+}
+```
+
+Kill a stream and clean it up.
+
+### HTTP Request
+
+`GET localhost:8888/api/2/streams/:id/kill/`
