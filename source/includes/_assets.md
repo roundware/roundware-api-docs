@@ -60,7 +60,7 @@ $.ajax(settings).done(function (response) {
     "submitted": true,
     "created": "2012-07-24T18:06:40",
     "weight": 50,
-    "project": 1,
+    "project_id": 1,
     "language_id": 1,
     "description_loc_ids": [],
     "alt_text_loc_ids": [],
@@ -82,7 +82,7 @@ $.ajax(settings).done(function (response) {
     "submitted": true,
     "created": "2017-04-15T16:35:57.616822",
     "weight": 50,
-    "project": 1,
+    "project_id": 1,
     "language_id": 1,
     "description_loc_ids": [],
     "alt_text_loc_ids": [],
@@ -122,6 +122,119 @@ created__gte | datetime |
 <aside class="success">
 Note — Adding GET param <code>admin=1</code> to this request will provide all localized strings in response, not only English.
 </aside>
+
+
+## GET assets/?paginate=True
+
+```python
+import requests
+
+url = "http://localhost:8888/api/2/assets/"
+
+querystring = {"project_id":"1","media_type":"audio","language":"en","paginate":"True","page_size":2}
+
+headers = {'authorization': 'token 4ee0fc210823c2c2f72f06e3fe862c0f6740d3b4'}
+
+response = requests.request("GET", url, headers=headers, params=querystring)
+
+print(response.text)
+```
+
+```shell
+curl --request GET \
+  --url 'http://localhost:8888/api/2/assets/?project_id=1&media_type=audio&language=en&paginate=True&page_size=2' \
+  --header 'authorization: token 4ee0fc210823c2c2f72f06e3fe862c0f6740d3b4'
+```
+
+```javascript
+var settings = {
+  "async": true,
+  "crossDomain": true,
+  "url": "http://localhost:8888/api/2/assets/?project_id=1&media_type=audio&language=en&paginate=True&page_size=2",
+  "method": "GET",
+  "headers": {
+    "authorization": "token 4ee0fc210823c2c2f72f06e3fe862c0f6740d3b4"
+  }
+}
+
+$.ajax(settings).done(function (response) {
+  console.log(response);
+});
+```
+
+> Sample JSON response:
+
+```json
+{
+    "count": 20,
+    "next": "http://localhost:8888/api/2/assets/?page=2&page_size=2&paginate=True&project_id=1",
+    "previous": null,
+    "results":
+        [
+          {
+            "id": 1,
+            "description": "",
+            "latitude": 1,
+            "longitude": 1,
+            "shape": {
+                "type": "MultiPolygon",
+                "coordinates": [[[[0,0], [0,1], [1,1], [1,0], [0,0]]]]
+            },
+            "filename": "rw_test_audio1.wav",
+            "file": null,
+            "volume": 1,
+            "submitted": true,
+            "created": "2012-07-24T18:06:40",
+            "weight": 50,
+            "project_id": 1,
+            "language_id": 1,
+            "description_loc_ids": [],
+            "alt_text_loc_ids": [],
+            "media_type": "audio",
+            "audio_length_in_seconds": 30,
+            "tag_ids": [8,3,5],
+            "session_id": 1,
+            "envelope_ids": [1]
+          },
+          {
+            "id": 2,
+            "description": "",
+            "latitude": 1,
+            "longitude": 1,
+            "shape": null,
+            "filename": "20170415-163557-1.wav",
+            "file": "/rwmedia/20170415-163557-1.wav",
+            "volume": 1,
+            "submitted": true,
+            "created": "2017-04-15T16:35:57.616822",
+            "weight": 50,
+            "project_id": 1,
+            "language_id": 1,
+            "description_loc_ids": [],
+            "alt_text_loc_ids": [],
+            "media_type": "audio",
+            "audio_length_in_seconds": 24.81,
+            "tag_ids": [3,8],
+            "session_id": 1,
+            "envelope_ids": [2]
+          }
+        ]
+}
+```
+
+Get paginated list of Assets.
+Same filters as above apply.
+
+### HTTP Request
+
+`GET localhost:8888/api/2/assets/?paginate=True`
+
+### Optional Parameters
+
+Parameter | Format | Description/Notes
+--------- | ------ | -----------------
+paginate | integer or string | True, 1, true all work; default is False
+page_size | integer | sets number of results per page
 
 
 ## GET assets/:id/
@@ -178,7 +291,7 @@ $.ajax(settings).done(function (response) {
   "submitted": true,
   "created": "2012-07-24T18:06:40",
   "weight": 50,
-  "project": 1,
+  "project_id": 1,
   "language_id": 1,
   "description_loc_ids": [],
   "alt_text_loc_ids": [],
@@ -258,7 +371,7 @@ $.ajax(settings).done(function (response) {
   "submitted": true,
   "created": "2012-07-24T18:06:40",
   "weight": 50,
-  "project": 1,
+  "project_id": 1,
   "language_id": 1,
   "description_loc_ids": [47,48],
   "alt_text_loc_ids": [49,50],
@@ -377,7 +490,7 @@ $.ajax(settings).done(function (response) {
   "created": "2012-07-24T18:06:40",
   "weight": 50,
   "caption_loc_ids": null,
-  "project": 1,
+  "project_id": 1,
   "language_id": 1,
   "description_loc_ids": [5,7],
   "alt_text_loc_ids": [7,9],
@@ -673,7 +786,7 @@ $.ajax(settings).done(function (response) {
         "created": "2015-05-02T16:30:08",
         "weight": 50,
         "caption_loc_ids": null,
-        "project": 19,
+        "project_id": 19,
         "language_id": 1,
         "description_loc_ids": [],
         "alt_text_loc_ids": [],
@@ -699,7 +812,7 @@ $.ajax(settings).done(function (response) {
         "created": "2015-10-26T22:58:22",
         "weight": 50,
         "caption_loc_ids": null,
-        "project": 19,
+        "project_id": 19,
         "language_id": 1,
         "description_loc_ids": [],
         "alt_text_loc_ids": [],
