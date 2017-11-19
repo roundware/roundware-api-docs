@@ -22,6 +22,7 @@ includes:
   - localizedstrings
   - login
   - projects
+  - projectgroups
   - sessions
   - speakers
   - streams

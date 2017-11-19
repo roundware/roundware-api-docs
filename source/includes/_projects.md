@@ -48,6 +48,7 @@ $.ajax(settings).done(function (response) {
   {
     "id": 1,
     "name": "Test Project",
+    "owner": "Test Company",
     "latitude": 1,
     "longitude": 1,
     "pub_date": "2011-12-06T16:06:32",
@@ -76,6 +77,7 @@ $.ajax(settings).done(function (response) {
     "sharing_message": "Check out this awesome recording I made using Roundware!",
     "out_of_range_message": "You are out of range of this Roundware project.  Please go somewhere within range and try again.  Thank you.",
     "legal_agreement": "Herein should be the brief legal agreement that participants need to agree to in order to make and submit a recording to a Roundware project.",
+    "description": "This is a test project description.",
     "demo_stream_message": "You are out of range of this Roundware project.  Please go somewhere within range and try again.  Thank you.",
     "language_ids": [1]
   }
@@ -143,6 +145,7 @@ $.ajax(settings).done(function (response) {
 {
   "id": 1,
   "name": "Test Project",
+  "owner": "Test Company",
   "latitude": 1,
   "longitude": 1,
   "pub_date": "2011-12-06T16:06:32",
@@ -171,6 +174,7 @@ $.ajax(settings).done(function (response) {
   "sharing_message": "Check out this awesome recording I made using Roundware!",
   "out_of_range_message": "You are out of range of this Roundware project. Please go somewhere within range and try again. Thank you.",
   "legal_agreement": "Herein should be the brief legal agreement that participants need to agree to in order to make and submit a recording to a Roundware project.",
+  "description": "This is a test project description.",
   "demo_stream_message": "You are out of range of this Roundware project. Please go somewhere within range and try again.  Thank you.",
   "language_ids": [1]
 }
@@ -847,6 +851,7 @@ curl --request POST \
   --header 'content-type: application/json' \
   --data '{
   "name": "New Project",
+  "owner": "New Company",
   "latitude": 40,
   "longitude": -80,
   "pub_date": "2015-01-01T00:00:00",
@@ -876,7 +881,8 @@ curl --request POST \
   "sharing_message_loc": [49,50],
   "out_of_range_message_loc": [47,48],
   "legal_agreement_loc": [53,54],
-  "demo_stream_message_loc": [47,48]
+  "demo_stream_message_loc": [47,48],
+  "description_loc": [3,4]
 }'
 ```
 
@@ -891,7 +897,7 @@ var settings = {
     "content-type": "application/json"
   },
   "processData": false,
-  "data": '{"name":"New Project","latitude": 40,"longitude": -80,"pub_date":"2015-01-01T00:00:00","audio_format":"mp3","auto_submit": true,"max_recording_length": 35,"listen_questions_dynamic": false,"speak_questions_dynamic": false,"sharing_url": "http://roundware.org/r/eid=[id]","out_of_range_url": "http://roundware.dyndns.org:8000/outofrange.mp3","recording_radius": 10,"listen_enabled": true,"geo_listen_enabled": false,"speak_enabled": true,"geo_speak_enabled": true,"reset_tag_defaults_on_startup": false,"timed_asset_priority": false,"repeat_mode": "continuous","files_url": "http://roundware.dyndns.org/rw.zip","files_version": "1","audio_stream_bitrate": "128","ordering": "random","demo_stream_enabled": false,"demo_stream_url": "http://roundware.dyndns.org:8000/stream.mp3","out_of_range_distance": 5000,"language_ids": [1,2],"sharing_message_loc": [49,50],"out_of_range_message_loc": [47,48],"legal_agreement_loc": [53,54],"demo_stream_message_loc": [47,48]}'
+  "data": '{"name":"New Project","owner": "New Company","latitude": 40,"longitude": -80,"pub_date":"2015-01-01T00:00:00","audio_format":"mp3","auto_submit": true,"max_recording_length": 35,"listen_questions_dynamic": false,"speak_questions_dynamic": false,"sharing_url": "http://roundware.org/r/eid=[id]","out_of_range_url": "http://roundware.dyndns.org:8000/outofrange.mp3","recording_radius": 10,"listen_enabled": true,"geo_listen_enabled": false,"speak_enabled": true,"geo_speak_enabled": true,"reset_tag_defaults_on_startup": false,"timed_asset_priority": false,"repeat_mode": "continuous","files_url": "http://roundware.dyndns.org/rw.zip","files_version": "1","audio_stream_bitrate": "128","ordering": "random","demo_stream_enabled": false,"demo_stream_url": "http://roundware.dyndns.org:8000/stream.mp3","out_of_range_distance": 5000,"language_ids": [1,2],"sharing_message_loc": [49,50],"out_of_range_message_loc": [47,48],"legal_agreement_loc": [53,54],"demo_stream_message_loc": [47,48], "description_loc": [3,4]}'
 }
 
 $.ajax(settings).done(function (response) {
@@ -905,6 +911,7 @@ $.ajax(settings).done(function (response) {
 {
   "id": 9,
   "name": "New Project",
+  "owner": "New Company",
   "latitude": 40,
   "longitude": -80,
   "pub_date": "2015-01-01T00:00:00",
@@ -934,6 +941,7 @@ $.ajax(settings).done(function (response) {
   "out_of_range_message": "You are out of range of this Roundware project.  Please go somewhere within range and try again.  Thank you.",
   "legal_agreement": "Herein should be the brief legal agreement that participants need to agree to in order to make and submit a recording to a Roundware project.",
   "demo_stream_message": "You are out of range of this Roundware project.  Please go somewhere within range and try again.  Thank you.",
+  "description": "Project description.",
   "language_ids": [2,1]
 }
 ```
@@ -968,6 +976,7 @@ language_ids | list of language_ids | 1,2 | Projects can have multiple Languages
 
 Parameter | Format | Sample | Description/Notes
 --------- | ------ | ------ | -----------------
+owner | string | New owner |
 auto_submit | boolean | true | will Project Assets by default be immediately available to streams?
 listen_enabled | boolean | true | can the Project generate audio streams?
 geo_listen_enabled | boolean | true | is the audio stream filtered by location?
@@ -982,6 +991,7 @@ files_version | integer | 1 |
 sharing_message_loc | list of localized_string_ids | 5,6 | default text for sharing message
 out_of_range_message_loc | list of localized_string_ids | 7,8 | listener is out of range notification text
 legal_agreement_loc | list of localized_string_ids | 9,10 | legal agreement text for contributions
+description_loc | list of localized_string_ids | 5,6 | project description
 demo_stream_message_loc | list of localized_string_ids | 11,12 | notification text when demo stream is playing instead of dynamic stream
 listen_questions_dynamic | boolean | false | not currently used
 speak_questions_dynamic | boolean | false | not currently used
@@ -1038,6 +1048,7 @@ $.ajax(settings).done(function (response) {
 {
   "id": 9,
   "name": "Renamed Project",
+  "owner": "New Company",
   "latitude": 40,
   "longitude": -80,
   "pub_date": "2015-01-01T00:00:00",
@@ -1067,6 +1078,7 @@ $.ajax(settings).done(function (response) {
   "out_of_range_message": "You are out of range of this Roundware project.  Please go somewhere within range and try again.  Thank you.",
   "legal_agreement": "Herein should be the brief legal agreement that participants need to agree to in order to make and submit a recording to a Roundware project.",
   "demo_stream_message": "You are out of range of this Roundware project.  Please go somewhere within range and try again.  Thank you.",
+  "description": "Project description.",
   "language_ids": [2,1]
 }
 ```
@@ -1085,6 +1097,7 @@ Partial update allowed; params not included will leave field values unchanged.
 Parameter | Format | Sample | Description/Notes
 --------- | ------ | ------ | -----------------
 name | string | New Project |
+owner | string | New owner |
 latitude | float | 1.234 | "central" location for Project
 longitude | float | 2.345 | "central" location for Project
 pub_date | datetime | 2015-01-01T00:00:00 | auto-generated
@@ -1112,6 +1125,7 @@ files_version | integer | 1 |
 sharing_message_loc | list of localized_string_ids | 5,6 | default text for sharing message
 out_of_range_message_loc | list of localized_string_ids | 7,8 | listener is out of range notification text
 legal_agreement_loc | list of localized_string_ids | 9,10 | legal agreement text for contributions
+description_loc | list of localized_string_ids | 5,6 | project description
 demo_stream_message_loc | list of localized_string_ids | 11,12 | notification text when demo stream is playing instead of dynamic stream
 listen_questions_dynamic | boolean | false | not currently used
 speak_questions_dynamic | boolean | false | not currently used
