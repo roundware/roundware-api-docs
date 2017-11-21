@@ -30,6 +30,8 @@ includes:
   - tagrelationships
   - tags
   - timedassets
+  - uielements
+  - uielementnames
   - uigroups
   - uiitems
   - votes

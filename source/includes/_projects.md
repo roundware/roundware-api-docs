@@ -697,6 +697,127 @@ Parameter | Format | Description/Notes
 --------- | ------ | -----------------
 session_id | integer | used to localize response strings
 
+
+## GET projects/:id/uielements/
+
+```python
+import requests
+
+url = "http:///localhost:8888/api/2/projects/1/uielements/"
+
+querystring = {"language_code":"en","variant":"@2x"}
+
+headers = {'authorization': 'token 4ee0fc210823c2c2f72f06e3fe862c0f6740d3b4'}
+
+response = requests.request("GET", url, headers=headers, params=querystring)
+
+print(response.text)
+```
+
+```shell
+curl --request GET \
+  --url http://localhost:8888/api/2/projects/1/uigroups/?language_code=en&variant=@2x \
+  --header 'authorization: token 4ee0fc210823c2c2f72f06e3fe862c0f6740d3b4'
+```
+
+```javascript
+var settings = {
+  "async": true,
+  "crossDomain": true,
+  "url": "http://localhost:8888/api/2/projects/1/uigroups/?language_code=en&variant=@2x",
+  "method": "GET",
+  "headers": {
+    "authorization": "token 4ee0fc210823c2c2f72f06e3fe862c0f6740d3b4"
+  }
+}
+
+$.ajax(settings).done(function (response) {
+  console.log(response);
+});
+```
+
+> Sample JSON response:
+
+```json
+{
+    "config": {
+        "files_url": "/rwmedia/project1-uielements@2x.zip"
+    },
+    "uielements": {
+        "home": {
+            "home-speak-btn": {
+                "label_text_color": "",
+                "label_position": "text_overlay",
+                "file_name": "home-speak-btn@2x.png",
+                "label_text": "SPEAK"
+            },
+            "home-bg": {
+                "label_text_color": "",
+                "label_position": "",
+                "file_name": "home-bg@2x.png",
+                "label_text": null
+            },
+            "home-listen-btn": {
+                "label_text_color": "#ffffff",
+                "label_position": "text_overlay",
+                "file_name": "home-listen-btn@2x.jpg",
+                "label_text": "LISTEN"
+            }
+        },
+        "listen": {
+            "listen-play-btn": {
+                "label_text_color": "",
+                "label_position": "",
+                "file_name": "listen-play-btn@2x.png",
+                "label_text": null
+            },
+            "listen-bg": {
+                "label_text_color": "",
+                "label_position": "",
+                "file_name": "listen-bg@2x.jpg",
+                "label_text": null
+            }
+        },
+        "speak": {
+            "speak-play-btn": {
+                "label_text_color": "",
+                "label_position": "text_below",
+                "file_name": "speak-play-btn@2x.png",
+                "label_text": "PLAY"
+            },
+            "speak-bg": {
+                "label_text_color": "",
+                "label_position": "",
+                "file_name": "speak-bg@2x.jpg",
+                "label_text": null
+            }
+        },
+        "listentags": {},
+        "speaktags": {},
+        "thankyou": {}
+    }
+}
+```
+
+Get UIElements associated with specific Project.
+
+### HTTP Request
+
+`GET localhost:8888/api/2/projects/1/uielements/`
+
+### Required Parameter
+
+Parameter | Format | Description/Notes
+--------- | ------ | -----------------
+variant | string | @2x, @3x, xhdpi, xxhdpi etc
+
+### Optional Parameter
+
+Parameter | Format | Description/Notes
+--------- | ------ | -----------------
+language_code | 2-char string | default=en
+
+
 ## GET projects/:id/uigroups/
 
 ```python
