@@ -103,21 +103,33 @@ Get list of Assets.
 
 ### Optional Filters
 
-Parameter | Format | Description/Notes
---------- | ------ | -----------------
-session_id | integer |
-project_id | integer |
-tag_ids | comma separated list |
-media_type | string | audio, photo, text, video
-language | string | 2-character language shortcode
-envelope_ids | list of integers | can be single id in list
-longitude | double |
-latitude | double |
-submitted | boolean | determines whether or not asset will be available to streams etc
-audiolength__lte | double | in seconds
-audiolength__gte | double | in seconds
-created__lte | datetime |
-created__gte | datetime |
+Parameter       | Format                | Description/Notes
+--------------- | --------------------- | -----------------
+session_id      | integer               |
+project_id      | integer               |
+tag_ids         | comma separated list  |
+media_type      | string                | audio, photo, text, video
+language        | string                | 2-character language shortcode
+envelope_ids    | list of integers      | can be single id in list
+longitude       | double                |
+latitude        | double                |
+submitted       | boolean               | determines whether or not asset will be available to streams etc
+audiolength__lte| double                | in seconds
+audiolength__gte| double                | in seconds
+created__lte    | datetime              |
+created__gte    | datetime              |
+
+### Optional Ordering Parameters
+
+Adding the `ordering` parameter to the request will order the returned results by the specified field either ascending or descending.
+
+Value       | Sample                    | Description
+---------   | ------------------------- | ----------------------------
+id          | `ordering=id`             | ascending by `id`
+session_id  | `ordering=session_id`     | ascending by `session_id`
+audiolength | `ordering=audiolength`    | ascending by `audiolength`
+weight      | `ordering=-weight`        | descending by `weight`
+volume      | `ordering=-volume`        | descending by `volume`
 
 <aside class="success">
 Note — Adding GET param <code>admin=1</code> to this request will provide all localized strings in response, not only English.
@@ -223,7 +235,7 @@ $.ajax(settings).done(function (response) {
 ```
 
 Get paginated list of Assets.
-Same filters as above apply.
+Same filters and ordering as above apply.
 
 ### HTTP Request
 
@@ -231,10 +243,10 @@ Same filters as above apply.
 
 ### Optional Parameters
 
-Parameter | Format | Description/Notes
---------- | ------ | -----------------
-paginate | integer or string | True, 1, true all work; default is False
-page_size | integer | sets number of results per page
+Parameter | Format              | Description/Notes
+--------- | ------------------- | -----------------
+paginate  | integer or string   | True, 1, true all work; default is False
+page_size | integer             | sets number of results per page
 
 
 ## GET assets/:id/
