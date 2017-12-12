@@ -390,27 +390,40 @@ $.ajax(settings).done(function (response) {
         "owner": "Museums on Main Street",
         "description_loc": "Life in small town America.",
         "project_id": 6,
-        "thumbnail_url": "rwmedia/project-6-thumb.png"
+        "thumbnail_url": "/rwmedia/project6-thumb.png"
     },
     {
         "name": "World Heritage",
         "owner": "UNESCO",
         "description_loc": "UNESCO sites.",
         "project_id": 13,
-        "thumbnail_url": "rwmedia/project-13-thumb.png"
+        "thumbnail_url": "/rwmedia/project13-thumb.png"
     },
     {
         "name": "Access American Stories",
         "owner": "National Museum of American History",
         "description_loc": "Visual descriptions.",
         "project_id": 2,
-        "thumbnail_url": "rwmedia/project-2-thumb.png"
+        "thumbnail_url": "/rwmedia/project2-thumb.png"
     }
 ]
 ```
 
-Get list of available Projects in specified Project Group at client location. Global listen Projects in Project Group are included regardless of location.
+Get list of available Projects in specified Project Group at client location. Global listen Projects in Project Group are included regardless of client location.
 
 ### HTTP Request
 
 `GET localhost:8888/api/2/projectgroups/2/projects/`
+
+### Required Parameters
+
+Parameter | Format | Sample | Description/Notes
+--------- | ------ | ------ | -----------------
+latitude | double | 1.234 |
+longitude | double | 2.345 |
+
+### Optional Parameter
+
+Parameter | Format | Sample | Description/Notes
+--------- | ------ | ------ | -----------------
+language_code | 2-char string | en | default=en
