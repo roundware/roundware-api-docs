@@ -151,8 +151,8 @@ Parameter | Format | Sample | Description/Notes
 --------- | ------ | ------ | -----------------
 listener_range_max | integer | 10000 | maximum distance threshold in meters
 listener_range_min | integer | 1000 | minimum distance threshold in meters, default = 0
-listen_heading | float | 55.0 | compass heading of directional listening (degrees)
-listen_width | float | 10.0 | width of listening "beam" (degrees), default=10
+listener_heading | float | 55.0 | compass heading of directional listening (degrees)
+listener_width | float | 10.0 | width of listening "beam" (degrees), default=10
 
 ### Range Listening Mode
 
@@ -162,7 +162,7 @@ By default, `listener_range_min` is set to 0. If client includes `listener_range
 
 ### Directional Listening Mode
 
-If `listen_heading` is included in a request with a valid value, the stream switches to "directional listening" mode in which assets are added to the playlist based on being located in the specified direction (compass heading) from the listener. `listen_width` specifies how many degrees (centered around `listen_heading`) the "listening beam" should extend. The lower the value, the thinner and more focussed the beam becomes.
+If `listener_heading` is included in a request with a valid value, the stream switches to "directional listening" mode in which assets are added to the playlist based on being located in the specified direction (compass heading) from the listener. `listener_width` specifies how many degrees (centered around `listener_heading`) the "listening beam" should extend. The lower the value, the thinner and more focussed the beam becomes.
 
 `listener_range_min/max` parameters can be used in combination with directional listening to provide a direction as well as a distance range to filter for available assets. With no range parameters included in request, all assets from the listener's location to the antipodal location on the other side of the earth will be heard. The `listener_range_max` parameter must be included in every request for which client wishes to remain in range listening mode; if not included, stream will default back to standard listening mode for the project (geo or global listening).
 
