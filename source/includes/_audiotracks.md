@@ -1,7 +1,7 @@
 # audiotracks/
 
 ### Definition:
-A linear assemblage of alternating audio assets and silence (‘dead air’) which dynamically forms part of each stream by incorporating audio assets into the stream. There can be multiple audiotracks for each project which determine how many simultaneous audio assets can ever playback.
+A linear assemblage of alternating audio assets and silence (‘dead air’) which dynamically forms part of each stream by incorporating audio assets into the stream. There can be multiple audiotracks for each project which determine how many simultaneous audio assets can ever play back. Audiotracks can be filtered by tag such that an audiotrack only plays assets that have certain tags associated with them.
 
 ## GET audiotracks/
 
@@ -62,7 +62,8 @@ $.ajax(settings).done(function (response) {
     "minpanduration": 5,
     "maxpanduration": 10,
     "repeatrecordings": false,
-    "project_id": 1
+    "project_id": 1,
+    "tag_filters": [1,6,12]
   },
   {
     "id": 4,
@@ -81,7 +82,8 @@ $.ajax(settings).done(function (response) {
     "minpanduration": 5,
     "maxpanduration": 17,
     "repeatrecordings": false,
-    "project_id": 3
+    "project_id": 3,
+    "tag_filters": [3,5,23]
   }
 ]
 ```
@@ -163,7 +165,8 @@ $.ajax(settings).done(function (response) {
   "minpanduration": 5,
   "maxpanduration": 10,
   "repeatrecordings": false,
-  "project_id": 1
+  "project_id": 1,
+  "tag_filters": [1,6,12]
 }
 ```
 
@@ -180,7 +183,7 @@ import requests
 
 url = "http://localhost:8888/api/2/audiotracks/"
 
-payload = '{"project_id": 1,"minvolume": 0,"maxvolume": 1,"minduration": 2.5,"maxduration": 10,"mindeadair": 1,"maxdeadair": 3,"minfadeintime": 0.6,"maxfadeintime": 5,"minfadeouttime": 0.1,"maxfadeouttime": 2,"minpanpos": -0.5,"maxpanpos": 0.75,"minpanduration": 5,"maxpanduration": 17,"repeatrecordings": false}'
+payload = '{"project_id": 1,"minvolume": 0,"maxvolume": 1,"minduration": 2.5,"maxduration": 10,"mindeadair": 1,"maxdeadair": 3,"minfadeintime": 0.6,"maxfadeintime": 5,"minfadeouttime": 0.1,"maxfadeouttime": 2,"minpanpos": -0.5,"maxpanpos": 0.75,"minpanduration": 5,"maxpanduration": 17,"repeatrecordings": false,"tag_filters":[2,3]}'
 headers = {
     'authorization': "token 4ee0fc210823c2c2f72f06e3fe862c0f6740d3b4",
     'content-type': "application/json"
@@ -212,7 +215,8 @@ curl --request POST \
   "maxpanpos": 0.75,
   "minpanduration": 5,
   "maxpanduration": 17,
-  "repeatrecordings": false
+  "repeatrecordings": false,
+  "tag_filters": [2,3]
 }'
 ```
 
@@ -227,7 +231,7 @@ var settings = {
     "content-type": "application/json"
   },
   "processData": false,
-  "data": '{"project_id": 1,"minvolume": 0,"maxvolume": 1,"minduration": 2.5,"maxduration": 10,"mindeadair": 1,"maxdeadair": 3,"minfadeintime": 0.6,"maxfadeintime": 5,"minfadeouttime": 0.1,"maxfadeouttime": 2,"minpanpos": -0.5,"maxpanpos": 0.75,"minpanduration": 5,"maxpanduration": 17,"repeatrecordings": false}'
+  "data": '{"project_id": 1,"minvolume": 0,"maxvolume": 1,"minduration": 2.5,"maxduration": 10,"mindeadair": 1,"maxdeadair": 3,"minfadeintime": 0.6,"maxfadeintime": 5,"minfadeouttime": 0.1,"maxfadeouttime": 2,"minpanpos": -0.5,"maxpanpos": 0.75,"minpanduration": 5,"maxpanduration": 17,"repeatrecordings": false,"tag_filters":[2,3]'
 }
 
 $.ajax(settings).done(function (response) {
@@ -240,24 +244,23 @@ $.ajax(settings).done(function (response) {
 ```json
 {
   "id": 1,
-  "description": "",
-  "latitude": 1,
-  "longitude": 1,
-  "filename": "rw_test_audio1.wav",
-  "file": null,
-  "volume": 1,
-  "submitted": true,
-  "created": "2012-07-24T18:06:40",
-  "weight": 50,
-  "loc_caption": null,
-  "project": 1,
-  "language": "en",
-  "loc_description": [47,48],
-  "loc_alt_text": [49,50],
-  "media_type": "audio",
-  "audio_length_in_seconds": 30,
-  "tag_ids": [8,3,5],
-  "session_id": 1
+  "minvolume": 0,
+  "maxvolume": 1,
+  "minduration": 2.5,
+  "maxduration": 10,
+  "mindeadair": 1,
+  "maxdeadair": 3,
+  "minfadeintime": 0.6,
+  "maxfadeintime": 5,
+  "minfadeouttime": 0.1,
+  "maxfadeouttime": 2,
+  "minpanpos": -0.5,
+  "maxpanpos": 0.75,
+  "minpanduration": 5,
+  "maxpanduration": 17,
+  "repeatrecordings": false,
+  "project_id": 1,
+  "tag_filters": [2,3]
 }
 ```
 
@@ -293,6 +296,7 @@ maxpanduration | float | 20 |
 Parameter | Format | Sample | Description/Notes
 --------- | ------ | ------ | -----------------
 repeatrecordings | `boolean` | `true` | defaults to `true`
+tag_filters | array of integers | [3,4,5] |
 
 
 ## PATCH audiotracks/:id/
@@ -363,7 +367,8 @@ $.ajax(settings).done(function (response) {
   "minpanduration": 5,
   "maxpanduration": 17,
   "repeatrecordings": false,
-  "project_id": 1
+  "project_id": 1,
+  "tag_filters": [2,3]
 }
 ```
 
@@ -396,6 +401,7 @@ maxpanpos | float | 0.5 | must be between -1.0 and 1.0
 minpanduration | float | 10 |
 maxpanduration | float | 20 |
 repeatrecordings | `boolean` | `true` | defaults to `true`
+tag_filters | array of integers | [3,4,5] |
 
 
 ## DELETE audiotracks/:id/
