@@ -110,7 +110,7 @@ project_id      | integer               |
 tag_ids         | comma separated list  |
 media_type      | string                | audio, photo, text, video
 language        | string                | 2-character language shortcode
-envelope_ids    | list of integers      | can be single id in list
+envelope        | integer               |
 longitude       | double                |
 latitude        | double                |
 submitted       | boolean               | determines whether or not asset will be available to streams etc
@@ -426,7 +426,7 @@ description_loc_ids | comma-separated list | 6,7 | ids of localized strings
 alt_text_loc_ids comma-separated list | 9,10 | ids of localized strings
 
 
-## PATCH assets/
+## PATCH assets/:id/
 
 ```python
 import requests
@@ -520,7 +520,7 @@ Not all fields are available for update for various reasons.
 
 ### HTTP Request
 
-`PATCH localhost:8888/api/2/assets/`
+`PATCH localhost:8888/api/2/assets/:id/`
 
 ### Optional Parameters
 Data format: `application/json`

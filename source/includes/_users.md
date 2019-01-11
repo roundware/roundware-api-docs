@@ -12,7 +12,7 @@ import requests
 
 url = "http://localhost:8888/api/2/users/"
 
-payload = ""
+payload = '{"device_id": "12345","client_type": "iPhone"}'
 response = requests.request("POST", url, data=payload)
 
 print(response.text)

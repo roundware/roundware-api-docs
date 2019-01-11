@@ -265,7 +265,7 @@ $.ajax(settings).done(function (response) {
   "language": null,
   "loc_description": [],
   "loc_alt_text": [],
-  "asset_id": 9991,
+  "id": 9991,
   "media_type": "audio",
   "audio_length_in_seconds": 11.76,
   "tag_ids": [3,5,4],
