@@ -66,6 +66,8 @@ $.ajax(settings).done(function (response) {
     "alt_text_loc_ids": [],
     "media_type": "audio",
     "audio_length_in_seconds": 30,
+    "start_time": 2.7,
+    "end_time": 25.041,
     "tag_ids": [8,3,5],
     "session_id": 1,
     "envelope_ids": [1]
@@ -88,6 +90,8 @@ $.ajax(settings).done(function (response) {
     "alt_text_loc_ids": [],
     "media_type": "audio",
     "audio_length_in_seconds": 24.81,
+    "start_time": 5.7,
+    "end_time": 15.041,
     "tag_ids": [3,8],
     "session_id": 1,
     "envelope_ids": [2]
@@ -204,6 +208,8 @@ $.ajax(settings).done(function (response) {
             "alt_text_loc_ids": [],
             "media_type": "audio",
             "audio_length_in_seconds": 30,
+            "start_time": 2.7,
+            "end_time": 25.041,
             "tag_ids": [8,3,5],
             "session_id": 1,
             "envelope_ids": [1]
@@ -226,6 +232,8 @@ $.ajax(settings).done(function (response) {
             "alt_text_loc_ids": [],
             "media_type": "audio",
             "audio_length_in_seconds": 24.81,
+            "start_time": 5.7,
+            "end_time": 15.041,
             "tag_ids": [3,8],
             "session_id": 1,
             "envelope_ids": [2]
@@ -309,6 +317,8 @@ $.ajax(settings).done(function (response) {
   "alt_text_loc_ids": [],
   "media_type": "audio",
   "audio_length_in_seconds": 30,
+  "start_time": 2.7,
+  "end_time": 25.041,
   "tag_ids": [8,3,5],
   "session_id": 1,
   "envelope_ids": [1]
@@ -389,6 +399,8 @@ $.ajax(settings).done(function (response) {
   "alt_text_loc_ids": [49,50],
   "media_type": "audio",
   "audio_length_in_seconds": 30,
+  "start_time": 0,
+  "end_time": 30.0,
   "tag_ids": [8,3,5],
   "session_id": 1,
   "envelope_ids": [1]
@@ -433,7 +445,7 @@ import requests
 
 url = "http://localhost:8888/api/2/assets/24/"
 
-payload = "{"latitude": 2.789,"longitude": 2.1,"tag_ids": [3,4,5],"submitted": false,"description": "","description_loc_ids": [5,7],"alt_text_loc_ids": [7,9],"volume": 0.543,"weight": 89,"language_id": 1,"project_id": 1}"
+payload = "{"latitude": 2.789,"longitude": 2.1,"tag_ids": [3,4,5],"submitted": false,"description": "","description_loc_ids": [5,7],"alt_text_loc_ids": [7,9],"volume": 0.543,"weight": 89,"language_id": 1,"project_id": 1,"start_time": 2.5,"end_time": 12.7}"
 headers = {
     'authorization': "token aed40ccd8bbc291bf04ccea20627cd8f83eee9ca",
     'content-type': "application/json"
@@ -460,7 +472,9 @@ curl --request PATCH \
     "volume": 0.543,
     "weight": 89,
     "language_id": 1,
-    "project_id": 1
+    "project_id": 1,
+    "start_time": 2.5,
+    "end_time": 12.7
 }'
 ```
 
@@ -475,7 +489,7 @@ var settings = {
     "content-type": "application/json"
   },
   "processData": false,
-  "data": "{"latitude": 2.789,"longitude": 2.1,"tag_ids": [3,4,5],"submitted": false,"description": "","description_loc_ids": [5,7],"alt_text_loc_ids": [7,9],"volume": 0.543,"weight": 89,"language_id": 1,"project_id": 1}"
+  "data": "{"latitude": 2.789,"longitude": 2.1,"tag_ids": [3,4,5],"submitted": false,"description": "","description_loc_ids": [5,7],"alt_text_loc_ids": [7,9],"volume": 0.543,"weight": 89,"language_id": 1,"project_id": 1,"start_time": 2.5,"end_time": 12.7}"
 }
 
 $.ajax(settings).done(function (response) {
@@ -508,6 +522,8 @@ $.ajax(settings).done(function (response) {
   "alt_text_loc_ids": [7,9],
   "media_type": "audio",
   "audio_length_in_seconds": 30,
+  "start_time": 2.5,
+  "end_time": 12.7,
   "tag_ids": [3,4,5],
   "session_id": 1,
   "envelope_ids": [1]
@@ -538,6 +554,8 @@ project_id | integer | 1 |
 description | string | this is a transcript of the audio or other useful info |
 description_loc_ids | array of integers | [10,21] |
 alt_text_loc_ids | array of integers | [32,2] |
+start_time | float | 2.5 |
+end_time | float | 12.7 |
 
 
 ## DELETE assets/:id/
