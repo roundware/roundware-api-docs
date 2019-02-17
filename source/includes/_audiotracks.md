@@ -63,7 +63,10 @@ $.ajax(settings).done(function (response) {
     "maxpanduration": 10,
     "repeatrecordings": false,
     "project_id": 1,
-    "tag_filters": [1,6,12]
+    "tag_filters": [1,6,12],
+    "banned_duration": 60,
+    "active": true,
+    "start_with_silence": true
   },
   {
     "id": 4,
@@ -83,7 +86,10 @@ $.ajax(settings).done(function (response) {
     "maxpanduration": 17,
     "repeatrecordings": false,
     "project_id": 3,
-    "tag_filters": [3,5,23]
+    "tag_filters": [3,5,23],
+    "banned_duration": 600,
+    "active": true,
+    "start_with_silence": false
   }
 ]
 ```
@@ -166,7 +172,10 @@ $.ajax(settings).done(function (response) {
   "maxpanduration": 10,
   "repeatrecordings": false,
   "project_id": 1,
-  "tag_filters": [1,6,12]
+  "tag_filters": [1,6,12],
+  "banned_duration": 60,
+  "active": true,
+  "start_with_silence": true
 }
 ```
 
@@ -183,7 +192,8 @@ import requests
 
 url = "http://localhost:8888/api/2/audiotracks/"
 
-payload = '{"project_id": 1,"minvolume": 0,"maxvolume": 1,"minduration": 2.5,"maxduration": 10,"mindeadair": 1,"maxdeadair": 3,"minfadeintime": 0.6,"maxfadeintime": 5,"minfadeouttime": 0.1,"maxfadeouttime": 2,"minpanpos": -0.5,"maxpanpos": 0.75,"minpanduration": 5,"maxpanduration": 17,"repeatrecordings": false,"tag_filters":[2,3]}'
+payload = '{"project_id": 1,"minvolume": 0,"maxvolume": 1,"minduration": 2.5,"maxduration": 10,"mindeadair": 1,"maxdeadair": 3,"minfadeintime": 0.6,"maxfadeintime":5,"minfadeouttime":0.1,"maxfadeouttime": 2,"minpanpos": -0.5,"maxpanpos": 0.75,"minpanduration": 5,"maxpanduration": 17,"repeatrecordings": false,
+"tag_filters":[2,3], "banned_duration":60, "active": true, "start_with_silence": false}'
 headers = {
     'authorization': "token 4ee0fc210823c2c2f72f06e3fe862c0f6740d3b4",
     'content-type': "application/json"
@@ -216,7 +226,10 @@ curl --request POST \
   "minpanduration": 5,
   "maxpanduration": 17,
   "repeatrecordings": false,
-  "tag_filters": [2,3]
+  "tag_filters": [2,3],
+  "banned_duration": 60,
+  "active": true,
+  "start_with_silence": true
 }'
 ```
 
@@ -231,7 +244,7 @@ var settings = {
     "content-type": "application/json"
   },
   "processData": false,
-  "data": '{"project_id": 1,"minvolume": 0,"maxvolume": 1,"minduration": 2.5,"maxduration": 10,"mindeadair": 1,"maxdeadair": 3,"minfadeintime": 0.6,"maxfadeintime": 5,"minfadeouttime": 0.1,"maxfadeouttime": 2,"minpanpos": -0.5,"maxpanpos": 0.75,"minpanduration": 5,"maxpanduration": 17,"repeatrecordings": false,"tag_filters":[2,3]'
+  "data": '{"project_id": 1,"minvolume": 0,"maxvolume": 1,"minduration": 2.5,"maxduration": 10,"mindeadair": 1,"maxdeadair": 3,"minfadeintime": 0.6,"maxfadeintime": 5,"minfadeouttime": 0.1,"maxfadeouttime": 2,"minpanpos": -0.5,"maxpanpos": 0.75,"minpanduration": 5,"maxpanduration": 17,"repeatrecordings": false,"tag_filters":[2,3], "banned_duration":60, "active": true, "start_with_silence": false'
 }
 
 $.ajax(settings).done(function (response) {
@@ -260,7 +273,10 @@ $.ajax(settings).done(function (response) {
   "maxpanduration": 17,
   "repeatrecordings": false,
   "project_id": 1,
-  "tag_filters": [2,3]
+  "tag_filters": [2,3],
+  "banned_duration": 60,
+  "active": true,
+  "start_with_silence": false
 }
 ```
 
@@ -295,8 +311,11 @@ maxpanduration | float | 20 |
 
 Parameter | Format | Sample | Description/Notes
 --------- | ------ | ------ | -----------------
+active | `boolean` | `true` | defaults to `true`
 repeatrecordings | `boolean` | `true` | defaults to `true`
 tag_filters | array of integers | [3,4,5] |
+start_with_silence | `boolean`| `false` | defaults to `false` ie start with asset
+banned_duration | integer | 600 | elapsed time before asset can repeat (seconds)
 
 
 ## PATCH audiotracks/:id/
@@ -368,7 +387,10 @@ $.ajax(settings).done(function (response) {
   "maxpanduration": 17,
   "repeatrecordings": false,
   "project_id": 1,
-  "tag_filters": [2,3]
+  "tag_filters": [2,3],
+  "banned_duration": 60,
+  "active": true,
+  "start_with_silence": false
 }
 ```
 
@@ -402,6 +424,9 @@ minpanduration | float | 10 |
 maxpanduration | float | 20 |
 repeatrecordings | `boolean` | `true` | defaults to `true`
 tag_filters | array of integers | [3,4,5] |
+active | `boolean` | `true` |
+start_with_silence | `boolean`| `false` |
+banned_duration | integer | 600 |
 
 
 ## DELETE audiotracks/:id/
