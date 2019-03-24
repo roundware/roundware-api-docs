@@ -116,6 +116,7 @@ Get list of Votes.
 Parameter | Format | Description/Notes
 --------- | ------ | -----------------
 session_id | integer |
+project_id | integer |
 voter_id | integer | corresponds to user.id in database
 asset_id | integer |
 type | enum | OPTIONS: flag, like, rate, block_asset, block_user
@@ -422,3 +423,112 @@ Delete Vote.
 ### HTTP Request
 
 `DELETE localhost:8888/api/2/votes/:id/`
+
+## GET votes/summary/
+
+```python
+import requests
+
+url = "http://localhost:8888/api/2/votes/summary"
+
+querystring = {"project_id": "1", "type": "like"}
+
+headers = {'authorization': 'token 4ee0fc210823c2c2f72f06e3fe862c0f6740d3b4'}
+
+response = requests.request("GET", url, headers=headers, params=querystring)
+
+print(response.text)
+```
+
+```shell
+curl --request GET \
+  --url 'http://localhost:8888/api/2/votes/summary/?project_id=1&type=like' \
+  --header 'authorization: token 4ee0fc210823c2c2f72f06e3fe862c0f6740d3b4'
+```
+
+```javascript
+var settings = {
+  "async": true,
+  "crossDomain": true,
+  "url": "http://localhost:8888/api/2/votes/summary/?project_id=1&type=like'",
+  "method": "GET",
+  "headers": {
+    "authorization": "token 4ee0fc210823c2c2f72f06e3fe862c0f6740d3b4"
+  }
+}
+
+$.ajax(settings).done(function (response) {
+  console.log(response);
+});
+```
+
+> Sample JSON response for single vote type:
+
+```json
+[
+    {
+        "asset_id": 1,
+        "asset_votes": 2
+    },
+    {
+        "asset_id": 3,
+        "asset_votes": 1
+    }
+]
+```
+
+> Sample JSON response for all vote types (ie no type param included in request):
+
+```json
+[
+    {
+        "asset_id": 3,
+        "asset_votes": [
+            {
+                "total": 1,
+                "type": "like"
+            },
+            {
+                "total": 1,
+                "type": "block_user"
+            },
+            {
+                "total": 2,
+                "type": "rate",
+                "avg": 4
+            },
+            {
+                "total": 3,
+                "type": "block_asset"
+            }
+        ]
+    },
+    {
+        "asset_id": 1,
+        "asset_votes": [
+            {
+                "total": 2,
+                "type": "block_asset"
+            },
+            {
+                "total": 2,
+                "type": "like"
+            }
+        ]
+    }
+]
+```
+
+Get summary of Votes by asset and type.
+
+### HTTP Request
+
+`GET localhost:8888/api/2/votes/summary/`
+
+### Optional Filters
+
+Parameter | Format | Description/Notes
+--------- | ------ | -----------------
+project_id | integer |
+asset_id | integer |
+type | enum | OPTIONS: flag, like, rate, block_asset, block_user
