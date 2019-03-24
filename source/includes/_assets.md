@@ -779,7 +779,7 @@ print(response.text)
 
 ```shell
 curl --request GET \
-  --url 'http://localhost:8888/api/2/assets/?limit=2&mediatype=audio&submitted=true&project_id=1&audiolength__lte=30&audiolength__gte=15' \
+  --url 'http://localhost:8888/api/2/assets/random/?limit=2&mediatype=audio&submitted=true&project_id=1&audiolength__lte=30&audiolength__gte=15' \
   --header 'authorization: token 4ee0fc210823c2c2f72f06e3fe862c0f6740d3b4'
 ```
 
@@ -787,7 +787,7 @@ curl --request GET \
 var settings = {
   "async": true,
   "crossDomain": true,
-  "url": "http://localhost:8888/api/2/assets/?limit=2&mediatype=audio&submitted=true&project_id=1&audiolength__lte=30&audiolength__gte=15",
+  "url": "http://localhost:8888/api/2/assets/random/?limit=2&mediatype=audio&submitted=true&project_id=1&audiolength__lte=30&audiolength__gte=15",
   "method": "GET",
   "headers": {
     "authorization": "token 4ee0fc210823c2c2f72f06e3fe862c0f6740d3b4"
@@ -873,3 +873,63 @@ media_type | string | audio, photo, text, video
 submitted | boolean |
 audiolength__lte | double | in seconds
 audiolength__gte | double | in seconds
+
+
+## GET assets/blocked/
+
+```python
+import requests
+
+url = "http://localhost:8888/api/2/assets/blocked/"
+
+querystring = {"session_id":"1"}
+
+headers = {'authorization': 'token 4ee0fc210823c2c2f72f06e3fe862c0f6740d3b4'}
+
+response = requests.request("GET", url, headers=headers, params=querystring)
+
+print(response.text)
+```
+
+```shell
+curl --request GET \
+  --url 'http://localhost:8888/api/2/assets/blocked/?session_id=1' \
+  --header 'authorization: token 4ee0fc210823c2c2f72f06e3fe862c0f6740d3b4'
+```
+
+```javascript
+var settings = {
+  "async": true,
+  "crossDomain": true,
+  "url": "http://localhost:8888/api/2/assets/blocked/?session_id=1",
+  "method": "GET",
+  "headers": {
+    "authorization": "token 4ee0fc210823c2c2f72f06e3fe862c0f6740d3b4"
+  }
+}
+
+$.ajax(settings).done(function (response) {
+  console.log(response);
+});
+```
+
+> Sample JSON response:
+
+```json
+{
+    "device_id": "c88a2d87-1501-4e6a-88d3-125b346e6e91",
+    "blocked_asset_ids": [1,3]
+}
+```
+
+Get list of blocked Assets for User.
+
+### HTTP Request
+
+`GET localhost:8888/api/2/assets/blocked/`
+
+### Required Parameter
+
+Parameter | Format | Description/Notes
+--------- | ------ | -----------------
+session_id | integer |
